@@ -34,9 +34,6 @@ extension List {
     }
     // P03
     subscript(index: Int) -> T? {
-       if index == 0 {
-          return self.value
-       }
        var nodeCounter: Int = 0
 
        var currNode = self
