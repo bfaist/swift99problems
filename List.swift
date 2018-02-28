@@ -24,9 +24,6 @@ extension List {
        }
        return currNode.value
     }
-}
-
-extension List {
     // P02
     var pennultimate: T? {
        var currNode = self
@@ -34,24 +31,40 @@ extension List {
           currNode = currNode.nextItem!
        }
        return currNode.value
+    }
+    // P03
+    subscript(index: Int) -> T? {
+       if index == 0 {
+          return self.value
+       }
+       var nodeCounter: Int = 0
 
+       var currNode = self
+       while(currNode.nextItem != nil && nodeCounter != index) {
+          currNode = currNode.nextItem!
+          nodeCounter += 1
+       }
+       return currNode.value
     }
 }
 
 // TESTS
 
 if let a = List(1,2,3,4,5) {
-    print(a.last!)
-    print(a.pennultimate!)
+   print("P01 TEST \(a.last!)")
+   print("P02 TEST \(a.pennultimate!)")
+   print("P03 TEST \(a[1]!) \(a[3]!)")
 }
 
 if let b = List(99,98,97,96,95,94,93,92,91,90) {
-    print(b.last!)
-    print(b.pennultimate!)
+    print("P01 TEST \(b.last!)")
+    print("P02 TEST \(b.pennultimate!)")
+    print("P03 TEST \(b[1]!) \(b[6]!)")
 }
 
 if let c = List(99) {
-    print(c.last!)
-    print(c.pennultimate!)
+    print("P01 TEST \(c.last!)")
+    print("P02 TEST \(c.pennultimate!)")
+    print("P03 TEST \(c[0]!)")
 }
 
