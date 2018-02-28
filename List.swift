@@ -26,13 +26,32 @@ extension List {
     }
 }
 
+extension List {
+    // P02
+    var pennultimate: T? {
+       var currNode = self
+       while(currNode.nextItem != nil && currNode.nextItem!.nextItem != nil) {
+          currNode = currNode.nextItem!
+       }
+       return currNode.value
+
+    }
+}
+
 // TESTS
 
 if let a = List(1,2,3,4,5) {
     print(a.last!)
+    print(a.pennultimate!)
 }
 
 if let b = List(99,98,97,96,95,94,93,92,91,90) {
     print(b.last!)
+    print(b.pennultimate!)
+}
+
+if let c = List(99) {
+    print(c.last!)
+    print(c.pennultimate!)
 }
 
