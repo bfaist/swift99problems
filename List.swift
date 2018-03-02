@@ -66,6 +66,36 @@ extension List {
        return r!
     }
 }
+extension List where T:Equatable {
+    // P06
+    func isPalindrome() -> Bool {
+       var data: [T] = []
+       var currNode = self
+       while(currNode.nextItem != nil) {
+          data.append(currNode.value)
+          currNode = currNode.nextItem!
+       }
+       data.append(currNode.value)
+
+       var headIndex = 0
+       var tailIndex = data.count-1
+
+       var isPalindrome = true
+
+       while(headIndex <= tailIndex &&
+             tailIndex >= headIndex) {
+
+             if(data[headIndex] != data[tailIndex]) {
+                isPalindrome = false
+                break
+             }
+
+           headIndex += 1
+           tailIndex -= 1
+       }
+       return isPalindrome
+    }
+}
 
 // TESTS
 
@@ -75,6 +105,7 @@ if let a = List(1,2,3,4,5) {
    print("P03 TEST \(a[1]!) \(a[3]!)")
    print("P04 TEST \(a.length)")
    print("P05 TEST \(a.reverse().last!)")
+   print("P06 TEST \(a.isPalindrome())")
 }
 
 if let b = List(99,98,97,96,95,94,93,92,91,90) {
@@ -83,6 +114,7 @@ if let b = List(99,98,97,96,95,94,93,92,91,90) {
     print("P03 TEST \(b[1]!) \(b[6]!)")
     print("P04 TEST \(b.length)")
     print("P05 TEST \(b.reverse().last!)")
+    print("P06 TEST \(b.isPalindrome())")
 }
 
 if let c = List(99) {
@@ -91,5 +123,12 @@ if let c = List(99) {
     print("P03 TEST \(c[0]!)")
     print("P04 TEST \(c.length)")
     print("P05 TEST \(c.reverse().last!)")
+}
+
+if let d = List(1,2,3,3,2,1) {
+    print("P06 TEST \(d.isPalindrome())")
+}
+if let e = List(1,2,3,2,1) {
+    print("P06 TEST \(e.isPalindrome())")
 }
 
