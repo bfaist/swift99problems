@@ -95,6 +95,22 @@ extension List where T:Equatable {
        }
        return isPalindrome
     }
+    // P08
+    func compress() {
+       var currNode = self
+       var lastGoodNode = self
+       while(currNode.nextItem != nil) {
+           while(currNode.nextItem != nil &&
+                 currNode.nextItem!.value == lastGoodNode.value) {
+               currNode = currNode.nextItem!
+           }
+           if(currNode.nextItem != nil) {
+               lastGoodNode.nextItem = currNode.nextItem!
+               lastGoodNode = currNode.nextItem!
+           }
+       }
+       lastGoodNode.nextItem = nil
+    }
 }
 
 // TESTS
@@ -131,4 +147,8 @@ if let d = List(1,2,3,3,2,1) {
 if let e = List(1,2,3,2,1) {
     print("P06 TEST \(e.isPalindrome())")
 }
-
+if let g = List("a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e") {
+    g.compress()
+    print("P08 TEST \(g.length)")
+    for i in 0..<g.length { print("P08 TEST \(g[i]!)") }
+}
