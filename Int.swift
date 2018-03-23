@@ -26,6 +26,14 @@ extension Int {
         }
         return Int.gcd(second, first % second)
     }
+    // P33
+    func isCoprimeTo(_ other: Int) -> Bool {
+        if Int.gcd(self, other) == 1 {
+             return true 
+        }
+
+        return false
+    }
 }
 
 // Tests
@@ -38,3 +46,7 @@ for i in 1...100 {
 
 print(Int.gcd(36,63))
 print(Int.gcd(104,20))
+
+print(35.isCoprimeTo(64))
+print(35.isCoprimeTo(65))
+print(3.isCoprimeTo(2))
