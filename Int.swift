@@ -1,4 +1,5 @@
 extension Int {
+    // P31
     func isPrime() -> Bool {
         let n = self
         if(n <= 1) {
@@ -18,6 +19,7 @@ extension Int {
             return true
         }
     }
+    // P32
     static func gcd(_ first: Int, _ second: Int) -> Int {
         if second == 0 {
             return first
